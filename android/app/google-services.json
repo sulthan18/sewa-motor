@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "681358027497",
+    "project_id": "sewa-motor-3fe46",
+    "storage_bucket": "sewa-motor-3fe46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681358027497:android:3e04c5b983b06035e69e78",
+        "android_client_info": {
+          "package_name": "com.example.sewa_motor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp1PdRQ5lQvLEtSlunsZQY2yMXFSYYKTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
