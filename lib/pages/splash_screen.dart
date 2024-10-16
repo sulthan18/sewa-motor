@@ -18,7 +18,7 @@ class SplashScreen extends StatelessWidget {
             height: 38,
             width: 171,
           ),
-          const Gap(20),
+          const Gap(17),
           Text(
             'Enjoy the Ride!',
             style: GoogleFonts.poppins(
@@ -51,7 +51,9 @@ class SplashScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: ButtonPrimary(
               text: 'Explore Now',
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/signup');
+              },
             ),
           ),
           const Gap(50),
