@@ -30,7 +30,7 @@ class _SigninPageState extends State<SigninPage> {
       if (message != 'success') return Info.error(message);
 
       // success
-      Info.success('Success Sign Up');
+      Info.success('Success Sign In');
       Future.delayed(const Duration(milliseconds: 1500), () {
         if (mounted) {
           Navigator.pushReplacementNamed(context, '/discover');
