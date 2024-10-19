@@ -27,11 +27,11 @@ class _BrowseFragmentState extends State<BrowseFragment> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       browseFeaturedController.fetchFeatured();
       browseNewestController.fetchNewest();
-      bookingStatusController.bike = {
-        'name': 'Enfielding',
-        'image':
-            'https://firebasestorage.googleapis.com/v0/b/sewa-motor-3fe46.appspot.com/o/bike%2Fenfielding.png?alt=media&token=812280fb-87c3-458e-9672-a0dd5e04d96b',
-      };
+      // bookingStatusController.bike = {
+      //   'name': 'Enfielding',
+      //   'image':
+      //       'https://firebasestorage.googleapis.com/v0/b/sewa-motor-3fe46.appspot.com/o/bike%2Fenfielding.png?alt=media&token=812280fb-87c3-458e-9672-a0dd5e04d96b',
+      // };
     });
     super.initState();
   }

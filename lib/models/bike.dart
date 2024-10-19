@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Bike {
   final String id;
   final String name;
@@ -7,6 +9,7 @@ class Bike {
   final String level;
   final double price;
   final double rating;
+  final DateTime release;
 
   Bike({
     required this.id,
@@ -17,6 +20,7 @@ class Bike {
     required this.level,
     required this.price,
     required this.rating,
+    required this.release,
   });
 
   factory Bike.fromJson(Map<String, dynamic> json) {
@@ -29,6 +33,20 @@ class Bike {
       level: json['level'] ?? 'Beginner',
       price: (json['price'] ?? 0.0).toDouble(),
       rating: (json['rating'] ?? 0.0).toDouble(),
+      release: (json['release'] != null)
+          ? (json['release'] as Timestamp).toDate()
+          : DateTime.now(),
     );
   }
+
+  static Bike get empty => Bike(
+      id: '',
+      name: '',
+      about: '',
+      category: '',
+      image: '',
+      level: '',
+      price: 0,
+      rating: 0,
+      release: DateTime.now());
 }
