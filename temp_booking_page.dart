@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:sewa_motor/models/bike.dart';
-import 'package:sewa_motor/common/info.dart';
 import 'package:sewa_motor/widgets/button_primary.dart';
 import 'package:sewa_motor/widgets/input.dart';
 
@@ -19,8 +18,7 @@ class _BookingPageState extends State<BookingPage> {
   final edtName = TextEditingController();
   final edtStartDate = TextEditingController();
   final edtEndDate = TextEditingController();
-  int selectedIndex = -1;
-  String? selectedInsurance;
+  int selectedIndex = 1;
 
   pickDate(TextEditingController editingController) {
     showDatePicker(
@@ -32,42 +30,6 @@ class _BookingPageState extends State<BookingPage> {
       if (pickedDate == null) return;
 
       editingController.text = DateFormat('dd MMM yyyy').format(pickedDate);
-    });
-  }
-
-  proceedToCheckout() {
-    if (edtName.text.isEmpty) {
-      return Info.error('Complete Name must be filled.');
-    }
-    if (edtStartDate.text.isEmpty) {
-      return Info.error('Start Rent Date must be selected.');
-    }
-    if (edtEndDate.text.isEmpty) {
-      return Info.error('End Date must be selected.');
-    }
-    if (selectedIndex == -1) {
-      return Info.error('Agency must be selected.');
-    }
-    if (selectedInsurance == null ||
-        selectedInsurance == 'Select available insurance') {
-      return Info.error('Insurance must be selected.');
-    }
-
-    Info.netral('Loading...');
-
-    Future.delayed(const Duration(milliseconds: 1500), () {
-      Info.success('Success Booking');
-      Future.delayed(const Duration(milliseconds: 1500), () {
-        if (mounted) {
-          Navigator.pushNamed(context, '/checkout', arguments: {
-            'bike': widget.bike,
-            'startDate': edtStartDate.text,
-            'endDate': edtEndDate.text,
-            'agency': selectedIndex,
-            'insurance': selectedInsurance,
-          });
-        }
-      });
     });
   }
 
@@ -91,9 +53,14 @@ class _BookingPageState extends State<BookingPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: ButtonPrimary(
-              text: 'Proceed to Checkout',
-              onTap: proceedToCheckout,
-            ),
+                text: 'Proceed to Checkout',
+                onTap: () {
+                  Navigator.pushNamed(context, '/checkout', arguments: {
+                    'bike': widget.bike,
+                    'startDate': edtStartDate.text,
+                    'endDate': edtEndDate.text,
+                  });
+                }),
           ),
           const Gap(30),
         ],
@@ -118,8 +85,8 @@ class _BookingPageState extends State<BookingPage> {
           const Gap(12),
           SizedBox(
             height: 52,
-            child: DropdownButtonFormField<String>(
-              value: selectedInsurance ?? 'Select available insurance',
+            child: DropdownButtonFormField(
+              value: 'Select available insurance',
               icon: Image.asset(
                 'assets/ic_arrow_down.png',
                 width: 20,
@@ -144,41 +111,27 @@ class _BookingPageState extends State<BookingPage> {
                   ),
                 );
               }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedInsurance =
-                      value == 'Select available insurance' ? null : value;
-                });
-              },
+              onChanged: (value) {},
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.only(right: 16),
-                prefixIcon: UnconstrainedBox(
-                  alignment: const Alignment(0.2, 0),
-                  child: Image.asset(
-                    'assets/ic_insurance.png',
-                    width: 24,
-                    height: 24,
+                  contentPadding: const EdgeInsets.only(right: 16),
+                  prefixIcon: UnconstrainedBox(
+                    alignment: const Alignment(0.2, 0),
+                    child: Image.asset(
+                      'assets/ic_insurance.png',
+                      width: 24,
+                      height: 24,
+                    ),
                   ),
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
-                  borderSide: BorderSide.none,
-                ),
-                filled: true,
-                fillColor: Colors.white,
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
-                  borderSide: const BorderSide(
-                    width: 2,
-                    color: Color(0xff4A1DFF),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(50),
+                    borderSide: BorderSide.none,
                   ),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-              dropdownColor: Colors.white,
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50),
+                      borderSide: const BorderSide(
+                        width: 2,
+                        color: Color(0xff4A1DFF),
+                      ))),
             ),
           ),
         ],
