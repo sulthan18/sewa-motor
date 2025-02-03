@@ -66,6 +66,3 @@ The primary objective of Motorin is to:
 
 ## Demo
 - [Video Demo](https://drive.google.com/drive/folders/1rRQjNIpC7s-UvtyOeuAlj3Rn6VjwMXJf?usp=sharing)
-
----
-Motorin empowers users to enjoy their trips without worrying about transportation hassles. By leveraging technology, it brings simplicity and reliability to motorcycle rentals.
